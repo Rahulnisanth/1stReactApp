@@ -1,5 +1,7 @@
 import { Component } from "react";
-
+import CardList from "./components/card-list/card-list.component";
+import SearchBox from "./components/search-box/search-box.component";
+import "./App.css";
 class AppOut extends Component {
   constructor() {
     super();
@@ -14,39 +16,35 @@ class AppOut extends Component {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) =>
-        this.setState(
-          () => {
-            return { monsters: users };
-          },
-          () => {
-            console.log(this.state);
-          }
-        )
+        this.setState(() => {
+          return { monsters: users };
+        })
       );
   }
-
+  //Function optimization:
+  onSearchFunction = (e) => {
+    const searchString = e.target.value.toLocaleLowerCase();
+    this.setState(() => {
+      return { searchString };
+    });
+  };
   render() {
+    //Storing all the elements in a value foe accessible play:
+    const { monsters, searchString } = this.state;
+    const { onSearchFunction } = this;
     //Filtering using the search values dynamically :
-    const FilterString = this.state.monsters.filter((monster) => {
-      return monster.name.toLocaleLowerCase().includes(this.state.searchString);
+    const FilterString = monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase().includes(searchString);
     });
 
     return (
       <div>
-        <input
+        <SearchBox
           className="search-box"
-          type="search"
-          placeholder="search monsters"
-          onChange={(e) => {
-            const searchString = e.target.value.toLocaleLowerCase();
-            this.setState(() => {
-              return { searchString };
-            });
-          }}
+          onChangeHandler={onSearchFunction}
+          placeholder="Search monsters"
         />
-        {FilterString.map((monster) => {
-          return <h1 key={monster.id}>{monster.name}</h1>;
-        })}
+        <CardList monsters={FilterString} />
       </div>
     );
   }

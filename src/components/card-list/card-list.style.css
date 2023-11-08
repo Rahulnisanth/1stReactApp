@@ -1,0 +1,22 @@
+.card-list {
+    width: 86vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 30px;
+}
+
+.card {
+    max-width: 250px;
+    min-width: 100px;
+    text-align: center;
+    cursor: pointer;
+    transform: translateZ(0);
+    transition: transform 0.2s ease-out;
+    backface-visibility: hidden;
+
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
