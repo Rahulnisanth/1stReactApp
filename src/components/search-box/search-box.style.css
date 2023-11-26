@@ -32,7 +32,7 @@ input:focus {
     outline: 1px white;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 500px) {
 
     .heading-2 {
         margin: 1rem 1rem;
