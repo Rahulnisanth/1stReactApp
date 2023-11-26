@@ -32,21 +32,16 @@ input:focus {
     outline: 1px white;
 }
 
-@media only screen and (max-width: 450px) {
-    .search-bar {
-        text-align: center;
-        padding: 20px 0 20px 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+@media (max-width: 450px) {
 
     .heading-2 {
-        margin-bottom: -50px;
-        font-size: 30px;
+        margin: 1rem 1rem;
+        display: inline;
+        text-align: center;
     }
 
     input {
+        width: 70%;
         text-align: center;
         margin: 10px;
         position: relative;
